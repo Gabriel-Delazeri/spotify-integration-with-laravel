@@ -39,9 +39,15 @@ Crie o arquivo .env e coloque suas variaveis de ambiente
 
  * DB_HOST=db_spotify_api_integration
 
- Gere a chave da aplicação Laravel
+Gere a chave da aplicação Laravel
 
 ```bash
   php artisan key:generate
 ```
- 
+
+Coloque as credenciais da sua Spotify Application no arquivo .env 
+
+* SPOTIFY_REDIRECT_URL=
+* SPOTIFY_CLIENT_ID=
+* SPOTIFY_CLIENT_SECRET=
+* SPOTIFY_SCOPE=
