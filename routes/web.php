@@ -1,18 +1,24 @@
 <?php
 
+use App\Http\Controllers\Api\SpotifyCallbackController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/media-player', [\App\Http\Controllers\MediaPlayerController::class, 'index']);
+
+// TODO fix that routes
+Route::get('/next-track', function(){
+    $spotifyService = new \App\Services\SpotifyApiService();
+    $spotifyService->nextTrack();
+
+    return redirect('/media-player');
 });
+Route::get('/previous-track', function(){
+    $spotifyService = new \App\Services\SpotifyApiService();
+    $spotifyService->previousTrack();
+
+    return redirect('/media-player');
+});
+
+Route::get('callback', [SpotifyCallbackController::class, 'callback']);
